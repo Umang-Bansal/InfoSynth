@@ -1,0 +1,13 @@
+streamlit
+pandas
+serpapi
+google-search-results
+groq
+langchain-groq
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+gspread
+python-dotenv
+
+
