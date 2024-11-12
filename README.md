@@ -25,20 +25,20 @@ pip install -r requirements.txt
 ```
 
 3. Set up API credentials:
-   - Create a `credentials.json` file for Google Sheets API access
+   - Create a `credentials.json` file for Google Sheets API access (see Google Sheets Setup section)
    - Obtain API keys for:
      - SerpAPI (for web searching)
      - Groq (for AI processing)
 
 4. Configure environment variables:
-   - Create a `.env` file or use Streamlit secrets management
-   - Required variables:
+   - Create a `.env` file in the project root directory
+   - Add the following variables:
      ```
-     SERPAPI_KEY=your_serpapi_key
+     SERPAPI_API_KEY=your_serpapi_key
      GROQ_API_KEY=your_groq_api_key
      ```
 
-## Usage
+## Usage Guide
 
 1. Run the Streamlit app:
 ```bash
@@ -47,26 +47,14 @@ streamlit run app.py
 
 2. Follow the web interface steps:
    - Choose data source (CSV or Google Sheets)
+   - If using Google Sheets:
+     - Enter the Spreadsheet ID (found in the sheet's URL)
+     - Select the specific sheet name
    - Select the primary column for analysis
    - Customize your query template
-   - Preview and process queries
-   - Export results in your preferred format
-
-## Third-Party APIs and Tools
-
-- [SerpAPI](https://serpapi.com/): Web search API
-- [Groq](https://groq.com/): Large Language Model API
-- [Google Sheets API](https://developers.google.com/sheets/api): Spreadsheet integration
-- [Streamlit](https://streamlit.io/): Web interface framework
-- [LangChain](https://python.langchain.com/): LLM integration framework
-
-## License
-
-Apache 2.0  
-
-## Contributing
-
-This project is open-source and welcomes contributions. Please see the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to submit improvements and bug fixes.
+   - Review the generated queries and estimated processing time
+   - Start processing
+   - Export results in your preferred format (CSV or update Google Sheet)
 
 ## Google Sheets Setup
 
@@ -84,10 +72,31 @@ This project is open-source and welcomes contributions. Please see the [CONTRIBU
    - It typically ends with @*.iam.gserviceaccount.com
 4. Click "Send" (no need to actually send an email)
 
-### Troubleshooting
+## API Keys and Environment Variables
 
-If you encounter permission errors:
+- SerpAPI Key: Sign up at [SerpAPI](https://serpapi.com/) to get your API key
+- Groq API Key: Obtain your key from [Groq](https://groq.com/)
+- Add both keys to your `.env` file as shown in the Setup Instructions
+
+## Optional Features
+
+- Dynamic query preview: See example queries generated from your data in real-time
+- Progress tracking: Visual progress bar and status updates during processing
+- Error handling: Detailed error messages and graceful failure recovery
+- Google Sheets integration: Direct reading and writing to Google Sheets
+
+## Troubleshooting
+
+If you encounter permission errors with Google Sheets:
 1. Verify the spreadsheet ID is correct
 2. Confirm the sheet is shared with the correct service account email
 3. Ensure the service account has Editor access
 4. Check that your credentials.json file is properly configured
+
+## License
+
+This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.

@@ -16,7 +16,7 @@ def initialize_session_state():
 initialize_session_state()
 
 def main():
-    st.title("Data Analysis Dashboard")
+    st.title("InfoSynth")
     
     df = None
     
@@ -84,7 +84,7 @@ def main():
             st.dataframe(df.head())            
             
             # Add Query Template Section
-            st.header("5. Query Template")
+            st.header("4. Query Template")
             st.write(f"""
             Create your query template using {primary_column} as a placeholder.
             Example: "What products does {primary_column} offer?"
@@ -97,23 +97,23 @@ def main():
             )
             
             # Preview generated queries
-            if st.button("Preview Generated Queries"):
-                st.subheader("Generated Queries Preview")
-                # Get first 5 values from the selected column
-                sample_values = df[primary_column].head()
-                
-                # Display example queries
-                for value in sample_values:
-                    generated_query = query_template.replace(
-                        f"{{{primary_column}}}", str(value)
-                    )
-                    st.write(f"- {generated_query}")
-                
-                # Show total number of queries that will be generated
-                st.info(f"Total queries to be generated: {len(df)}")
+            #if st.button("Preview Generated Queries"):
+            #    st.subheader("Generated Queries Preview")
+            #    # Get first 5 values from the selected column
+            #    sample_values = df[primary_column].head()
+            #    
+            #    # Display example queries
+            #    for value in sample_values:
+            #        generated_query = query_template.replace(
+            #            f"{{{primary_column}}}", str(value)
+            #        )
+            #        st.write(f"- {generated_query}")
+            #    
+            #    # Show total number of queries that will be generated
+            #    st.info(f"Total queries to be generated: {len(df)}")
             
             # Add confirmation and processing section
-            st.header("6. Process Queries")
+            st.header("5. Process Queries")
             total_queries = len(df[primary_column])
             estimated_time = total_queries * 2  # 2 second per query due to rate limiting
             
@@ -125,9 +125,9 @@ def main():
             """)
             
             # Show sample of what will be processed
-            st.subheader("Sample of data to be processed:")
-            sample_df = df[[primary_column]].head()
-            st.dataframe(sample_df)
+            #st.subheader("Sample of data to be processed:")
+            #sample_df = df[[primary_column]].head()
+            #st.dataframe(sample_df)
             
             # Process button with confirmation
             if st.button("Start Processing"):
@@ -140,12 +140,21 @@ def main():
                     for index, row in df.iterrows():
                         try:
                             value = row[primary_column]
+                            
+                            # Handle empty/null values
+                            if pd.isna(value) or str(value).strip() == '':
+                                results.append({
+                                    'input_value': value,
+                                    'result': 'NA'
+                                })
+                                continue
+                            
                             query = query_template.replace(f"{{{primary_column}}}", str(value))
                             
                             # Display current processing item
                             st.text(f"Processing: {value}")
                             
-                            # Process query (using your existing process_queries function)
+                            # Process query
                             result = process_queries(pd.DataFrame([row]), primary_column, query)
                             output = process_with_ai(result, query, llm)
                             
@@ -172,7 +181,7 @@ def main():
                 st.subheader("Results Preview:")
                 st.dataframe(st.session_state['results_df'].head())
                 
-                st.header("7. Save Results")
+                st.header("6. Save Results")
                 output_choice = st.radio("Choose an output format:", ["Download CSV", "Update Google Sheet"])
 
                 if output_choice == "Download CSV":
