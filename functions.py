@@ -133,8 +133,6 @@ def process_with_ai(search_results: dict, query: str, llm) -> str:
     return response
 
 
-
-
 def load_google_sheet(sheet_id: str, range_name: str) -> pd.DataFrame:    
     worksheet = get_worksheet(sheet_id,range_name)
     data = worksheet.get_all_records()    
