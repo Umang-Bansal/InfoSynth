@@ -15,7 +15,7 @@ InfoSynth is a powerful data enrichment tool that combines web search capabiliti
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/infosynth.git
+git clone https://github.com/Umang-Bansal/infosynth.git
 cd infosynth
 ```
 
