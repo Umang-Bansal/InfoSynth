@@ -100,3 +100,10 @@ This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Project Walkthrough
+
+Watch a detailed walkthrough of InfoSynth's features and usage:
+
+[![InfoSynth Walkthrough](https://www.loom.com/share/ca5492a9723d46ed81ca7ee3aeca9a41?sid=018a777a-fc0a-4909-9b09-d6adb432c350)](https://www.loom.com/share/ca5492a9723d46ed81ca7ee3aeca9a41?sid=018a777a-fc0a-4909-9b09-d6adb432c350)
+
